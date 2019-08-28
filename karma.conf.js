@@ -6,6 +6,8 @@ module.exports = function(config) {
 
     files: [
       'lib/angular/angular.js',
+      'lib/angular-resource/angular-resource.js',
+      'lib/angular-route/angular-route.js',
       '../node_modules/angular-mocks/angular-mocks.js',
       '**/*.module.js',
       '*!(.module|.spec).js',
@@ -17,11 +19,10 @@ module.exports = function(config) {
 
     frameworks: ['jasmine'],
 
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
 
     plugins: [
       'karma-chrome-launcher',
-      'karma-firefox-launcher',
       'karma-jasmine'
     ]
 

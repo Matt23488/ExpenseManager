@@ -3,10 +3,11 @@
 // AngularJS E2E Testing Guide:
 // https://docs.angularjs.org/guide/e2e-testing
 
-describe('My app', function() {
+describe('Expense Manager', function() {
 
-  beforeEach(function() {
-    browser.get('index.html');
-  });
+    it('should redirect `index.html` to `index.html#!/expenses', function () {
+        browser.get('index.html');
+        expect(browser.getCurrentUrl()).toContain('index.html#!/expenses');
+    });
 
 });

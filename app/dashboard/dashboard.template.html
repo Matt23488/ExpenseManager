@@ -1,2 +1,22 @@
-<p>Dashboard TODO</p>
-{{$ctrl.expenses}}
+<h1>Upcoming Expenses</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="number" ng-model="$ctrl.currentFunds" class="form-control" placeholder="Current Funds" />
+        </div>
+    </div>
+    <div>
+        <label>Leisure Funds:</label>
+        {{$ctrl.currentFunds - $ctrl.totalExpenses() | orZero | currency}}
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4" ng-repeat="expense in $ctrl.expenses">
+            <a href="#!/expenses/{{expense.id}}">{{expense.name}}</a><br />
+            <span>{{expense.cost | orZero | currency}}</span><br />
+            <strong class="text-warning">{{$ctrl.getDaysLeft(expense.day)}}</strong>
+            <hr />
+        </div>
+    </div>
+</div>

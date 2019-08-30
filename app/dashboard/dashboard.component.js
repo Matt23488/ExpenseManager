@@ -8,15 +8,13 @@ angular.
             function DashboardController(Expense) {
                 var self = this;
 
-                self.expenses = Expense.query();
+                self.expenses = Expense.queryAll();
                 self.getDaysLeft = function (day) {
                     var now = new Date();
                     var daysLeft = day - now.getDate();
-                    if (daysLeft > 0) {
-                        return 'due in ' + daysLeft + ' days';
-                    } else if (daysLeft === 0) {
-                        return 'due today';
-                    } else {
+                    if (daysLeft > 0) return 'due in ' + daysLeft + ' days';
+                    else if (daysLeft === 0) return 'due today';
+                    else {
                         // Add a month's worth of days to `now` and then do the calculation again
                         var year = now.getFullYear();
                         var month = now.getMonth() + 1;
@@ -34,7 +32,7 @@ angular.
                 self.totalExpenses = function () {
                     var sum = 0;
                     for (var i = 0; i < self.expenses.length; i++) {
-                        sum += self.expenses[i].cost;
+                        sum += self.expenses[i].cost || 0;
                     }
                     return sum;
                 };

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('core', ['core.expense']);
+angular.module('core', ['core.localStorage', 'core.expense']);

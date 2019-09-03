@@ -93,4 +93,15 @@ describe('LocalStorage', function () {
         expect(LocalStorage.containsKey('testString')).toBe(true);
         expect(LocalStorage.containsKey('testObj')).toBe(false);
     });
+
+    it('should be able to manage a prefix for the local storage key', function () {
+        expect(LocalStorage.getPrefix).toBeDefined();
+        expect(LocalStorage.setPrefix).toBeDefined();
+        expect(typeof LocalStorage.getPrefix).toBe('function');
+        expect(typeof LocalStorage.setPrefix).toBe('function');
+
+        expect(LocalStorage.getPrefix()).toBe('');
+        LocalStorage.setPrefix('test');
+        expect(LocalStorage.getPrefix()).toBe('test');
+    });
 });

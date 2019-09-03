@@ -2,27 +2,32 @@
 
 angular.
     module('core.expense').
-    factory('Expense', ['LocalStorage',
+    service('Expense', ['LocalStorage',
         function (LocalStorage) {
-            return {
-                queryAll: function () {
-                    return LocalStorage.read('core.expense$expenses') || [];
-                },
-                saveAll: function (expenses) {
-                    LocalStorage.write('core.expense$expenses', expenses);
-                },
-                query: function (expenseId) {
-                    return LocalStorage.read('core.expense$expenses.' + expenseId);
-                },
-                save: function (expenseId, expense) {
-                    // TODO
-                },
-                delete: function (expenseId) {
-                    // TODO
-                },
-                exists: function (expenseId) {
-                    return LocalStorage.containsKey('core.expense$expenses.' + expenseId);
-                }
+            LocalStorage.setPrefix('core.expense$expenses.')
+
+            this.queryAll = function () {
+                return LocalStorage.read('') || [];
+            };
+
+            this.saveAll = function (expenses) {
+                LocalStorage.write('', expenses);
+            };
+
+            this.query = function (expenseId) {
+                return LocalStorage.read(expenseId);
+            };
+
+            this.save = function (expenseId, expense) {
+                LocalStorage.write(expenseId, expense);
+            };
+
+            this.delete = function (expenseId) {
+                LocalStorage.delete(expenseId);
+            };
+
+            this.exists = function (expenseId) {
+                return LocalStorage.containsKey(expenseId);
             };
         }
     ]);
